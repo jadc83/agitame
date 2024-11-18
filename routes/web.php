@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,7 +19,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/departamentos', function () {
-    return view('departamentos.index');
+    $departamentos = DB::select('select * from departamentos');
+    return view('departamentos.index', [
+        'departamentos' => $departamentos,
+    ]);
 });
 
 require __DIR__.'/auth.php';
