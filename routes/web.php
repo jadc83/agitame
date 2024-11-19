@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,7 +22,7 @@ Route::get('/departamentos', function () {
     return view('departamentos.index', [
         'departamentos' => Departamento::all(),
     ]);
-});
+})->name('departamentos.index');
 
 Route::get('/departamentos/{departamento}', function (Departamento $departamento) {
     return view('departamentos.view', [
