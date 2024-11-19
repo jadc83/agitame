@@ -23,7 +23,7 @@
                                         Localidad
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        <span class="sr-only">Editar</span>
+                                        Editar
                                     </th>
                                 </tr>
                             </thead>
@@ -34,13 +34,15 @@
                                             {{ $departamento->codigo }}
                                         </th>
                                         <td class="px-6 py-4">
-                                            {{ $departamento->denominacion }}
+                                            <a href="{{ route('departamentos.view', $departamento) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                {{ $departamento->denominacion }}
+                                            </a>
                                         </td>
                                         <td class="px-6 py-4">
                                             {{ $departamento->localidad }}
                                         </td>
-                                        <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <td class="px-6 py-4">
+                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
                                         </td>
                                     </tr>
                                 @endforeach
