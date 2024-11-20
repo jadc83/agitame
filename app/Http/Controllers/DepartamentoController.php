@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Departamento;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DepartamentoController extends Controller
 {
@@ -31,7 +32,7 @@ class DepartamentoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'codigo' => 'required|max:2',
+            'codigo' => 'required|max:2|unique:departamentos,codigo',
             'denominacion' => 'required|string|max:255',
             'localidad' => 'nullable|string|max:255',
         ]);
@@ -65,7 +66,11 @@ class DepartamentoController extends Controller
     public function update(Request $request, Departamento $departamento)
     {
         $validated = $request->validate([
-            'codigo' => 'required|max:2',
+            'codigo' => [
+                'required',
+                'max:2',
+                Rule::unique('departamentos')->ignore($departamento),
+            ],
             'denominacion' => 'required|string|max:255',
             'localidad' => 'nullable|string|max:255',
         ]);
