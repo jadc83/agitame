@@ -9,4 +9,6 @@ class Departamento extends Model
 {
     /** @use HasFactory<\Database\Factories\DepartamentoFactory> */
     use HasFactory;
+
+    protected $fillable = ['codigo', 'denominacion', 'localidad'];
 }

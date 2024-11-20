@@ -22,7 +22,7 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        //
+        return view('departamentos.create');
     }
 
     /**
@@ -30,7 +30,13 @@ class DepartamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'codigo' => 'required|max:2',
+            'denominacion' => 'required|string|max:255',
+            'localidad' => 'nullable|string|max:255',
+        ]);
+        $departamento = Departamento::create($validated);
+        return redirect()->route('departamentos.show', $departamento);
     }
 
     /**
@@ -58,7 +64,17 @@ class DepartamentoController extends Controller
      */
     public function update(Request $request, Departamento $departamento)
     {
-        //
+        $validated = $request->validate([
+            'codigo' => 'required|max:2',
+            'denominacion' => 'required|string|max:255',
+            'localidad' => 'nullable|string|max:255',
+        ]);
+        // $departamento->codigo = $validated['codigo'];
+        // $departamento->denominacion = $validated['denominacion'];
+        // $departamento->localidad = $validated['localidad'];
+        $departamento->fill($validated);
+        $departamento->save();
+        return redirect()->route('departamentos.index');
     }
 
     /**
@@ -66,6 +82,7 @@ class DepartamentoController extends Controller
      */
     public function destroy(Departamento $departamento)
     {
-        //
+        $departamento->delete();
+        return redirect()->route('departamentos.index');
     }
 }
