@@ -37,6 +37,7 @@ class DepartamentoController extends Controller
             'localidad' => 'nullable|string|max:255',
         ]);
         $departamento = Departamento::create($validated);
+        session()->flash('exito', 'Departamento creado correctamente.');
         return redirect()->route('departamentos.show', $departamento);
     }
 
@@ -79,6 +80,7 @@ class DepartamentoController extends Controller
         // $departamento->localidad = $validated['localidad'];
         $departamento->fill($validated);
         $departamento->save();
+        session()->flash('exito', 'Departamento modificado correctamente.');
         return redirect()->route('departamentos.index');
     }
 
